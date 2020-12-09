@@ -1,0 +1,30 @@
+<p>Totol <strong>{{collectionSize}}</strong> items, grouped by <code>ListId</code></p>
+<div class="table-responsive" *ngIf="result">
+  <table class="table table-striped">
+    <tr>
+      <th>ListId</th>
+      <th>Id</th>
+      <th>Name</th>
+    </tr>
+    <ng-container *ngFor="let group of result">
+      <tr *ngFor="let value of group.values">
+        <td rowspan="group.values.length">{{group.groupName}}</td>
+        <td>{{value.id}}</td>
+        <td>{{value.name}}</td>
+      </tr>
+    </ng-container>
+  </table>
+
+  <!-- <div class="d-flex justify-content-between p-2">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+      (pageChange)="refreshItems()">
+    </ngb-pagination>
+
+    <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshItems()">
+      <option [ngValue]="20">20 items per page</option>
+      <option [ngValue]="40">40 items per page</option>
+      <option [ngValue]="50">50 items per page</option>
+    </select>
+  </div> -->
+
+</div>

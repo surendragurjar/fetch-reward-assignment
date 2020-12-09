@@ -1,0 +1,8 @@
+{
+
+    "/api": {
+        "target": "http://fetch-hiring.s3.amazonaws.com",
+        "secure": false,
+        "changeOrigin": true
+      }
+}
