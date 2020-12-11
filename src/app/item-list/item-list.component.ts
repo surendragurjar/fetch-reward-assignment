@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import SampleJson from '../../api/item-list.json';
 
 import { Item } from '../models/item';
-import { ItemListService } from '../item-list.service';
+//import { ItemListService } from '../item-list.service';
 
 import * as _ from 'underscore';
 
@@ -18,7 +18,8 @@ export class ItemListComponent implements OnInit {
   result = [];
   collectionSize = 0;
 
-  constructor(private itemListService: ItemListService) { }
+  //private itemListService: ItemListService
+  constructor() { }
 
   ngOnInit(): void {
 
@@ -37,9 +38,7 @@ export class ItemListComponent implements OnInit {
     })
 
     // remove rows with blank or null values
-    itemlist = _.reject(itemlist, function (value: Item) {
-      return value.name === null || value.name === "";
-    });
+    itemlist = this.filterBlankOrNullValues(itemlist);
 
     // create group and sortby listId
     let groups = new Set(itemlist.map(item => item.listId)
@@ -56,6 +55,13 @@ export class ItemListComponent implements OnInit {
 
     this.collectionSize = itemlist.length;
     //this.refreshItems();
+  }
+
+  public filterBlankOrNullValues(itemlist: Item[]) {
+    itemlist = _.reject(itemlist, function (value: Item) {
+      return value.name === null || value.name === "";
+    });
+    return itemlist;
   }
 
   // page = 1;
